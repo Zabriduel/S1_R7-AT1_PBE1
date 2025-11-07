@@ -23,19 +23,21 @@ const clienteController = {
             if (!nome || !cpf || !isNaN(nome) || isNaN(cpf)) {
                 return res.status(400).json({ message: 'Verifique os dados enviados e tente novamente!' });
             }
+
             const selecionarCpf = await clienteModel.selecionarByCpf(cpf);
             if(selecionarCpf.length===1){
                 return res.status(409).json({ message: 'Não foi possível realizar a operação, CPF já está cadastrado no sistema.' });
             }
             const resultado = await clienteModel.insert(nome, cpf);
+          
             if (resultado.insertId === 0) {
                 throw new Error('Ocorreu um erro ao incluir o Cliente');
             }
-            
+
             res.status(201).json({ message: 'Registro incluido com sucesso', data: resultado });
         } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: 'ocorreu um erro no servidor', errorMessage: error.message });
+                res.status(500).json({ message: 'Ocorreu um errro no servidor', errorMessage: error.message });
+            
         }
     },
     alteraCliente: async (req, res) => {
@@ -47,10 +49,10 @@ const clienteController = {
             if (!idCliente || (!nome && !cpf) || (!isNaN(nome) || isNaN(cpf)) || typeof idCliente != 'number') {
                 return res.status(400).json({ message: 'Verifique os dados enviados e tente novamente!' });
             }
-            // const selecionarCpf = await clienteModel.selecionarByCpf(cpf);
-            // if(selecionarCpf.length===1){
-            //     return res.status(409).json({ message: 'Não foi possível realizar a operação, CPF já está cadastrado no sistema.' });
-            // }
+            const selecionarCpf = await clienteModel.selecionarByCpf(cpf);
+            if(selecionarCpf.length===1){
+                return res.status(409).json({ message: 'Não foi possível realizar a operação, CPF já está cadastrado no sistema.' });
+            }
             const clienteAtual = await clienteModel.selecionarById(idCliente);
             if (clienteAtual.length === 0) {
                 return res.status(200).json({ message: 'Cliente não localizado' });
@@ -68,7 +70,8 @@ const clienteController = {
 
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Ocorreu um errro no servidor', errorMessage: error.message });
+                res.status(500).json({ message: 'Ocorreu um errro no servidor', errorMessage: error.message });
+            
         }
     },
     deletaCliente: async (req, res) => {
@@ -85,7 +88,7 @@ const clienteController = {
             }
 
             const resultadoDelete = await clienteModel.delete(idCliente);
-            if(resultadoDelete.affectedRows === 0){
+            if (resultadoDelete.affectedRows === 0) {
                 return res.status(200).json({ message: 'Ocorreu um erro ao excluir o cliente' });
             }
             res.status(200).json({ message: 'Cliente excluído com sucesso' });
