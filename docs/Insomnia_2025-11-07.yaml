@@ -1,0 +1,138 @@
+type: collection.insomnia.rest/5.0
+name: MVC
+meta:
+  id: wrk_1badc8233b814c43bc010c7fd6368cef
+  created: 1761222420000
+  modified: 1761222420000
+  description: ""
+collection:
+  - name: loja
+    meta:
+      id: fld_6797e9c00f3d4eb38ac3c4a930e6ad07
+      created: 1761311028444
+      modified: 1761311028444
+      sortKey: -1761311028444
+      description: ""
+  - name: ATV
+    meta:
+      id: fld_87d4ddbe3bd44f0c8014f459bc6b5c67
+      created: 1762437551150
+      modified: 1762437551150
+      sortKey: -1762437551150
+      description: ""
+    children:
+      - url: http://localhost:8000/clientes
+        name: INSERT CLI
+        meta:
+          id: req_c0ed109efd214745962b8f3b4908b3eb
+          created: 1762437555644
+          modified: 1762517202173
+          isPrivate: false
+          description: ""
+          sortKey: -1762437555644
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome": "Ana",
+            	"cpf": "12345678888"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/clientes
+        name: SELECT CLI
+        meta:
+          id: req_ec91419dbd9b4705862eec3e520396c3
+          created: 1762438384776
+          modified: 1762515646550
+          isPrivate: false
+          description: ""
+          sortKey: -1762438384776
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/clientes/9
+        name: UPDATE CLI
+        meta:
+          id: req_d6b2d70fd191479db25ec27a419299cf
+          created: 1762512772232
+          modified: 1762517137197
+          isPrivate: false
+          description: ""
+          sortKey: -1762512772232
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome": "",
+            	"cpf": 12342498
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8000/clientes/1
+        name: DELETE CLI
+        meta:
+          id: req_e4d2e18acb304377a543f28461991f88
+          created: 1762513598802
+          modified: 1762515656676
+          isPrivate: false
+          description: ""
+          sortKey: -1762513598802
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_07068dc10b1a5f3a56a2499625204da41ba1046c
+    created: 1761222420033
+    modified: 1761222420033
+environments:
+  name: Base Environment
+  meta:
+    id: env_07068dc10b1a5f3a56a2499625204da41ba1046c
+    created: 1761222420027
+    modified: 1761222420027
+    isPrivate: false
