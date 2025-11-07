@@ -20,7 +20,7 @@ const clienteController = {
         try {
             const { nome, cpf } = req.body;
 
-            if (!nome || !cpf || !isNaN(nome) || isNaN(cpf)) {
+            if (!nome || !cpf || !isNaN(nome) || isNaN(cpf) || cpf.toString().length < 11 || cpf.toString().length > 11) {
                 return res.status(400).json({ message: 'Verifique os dados enviados e tente novamente!' });
             }
 
@@ -45,8 +45,8 @@ const clienteController = {
             const idCliente = Number(req.params.idCliente);
             const { nome, cpf } = req.body;
 
-
-            if (!idCliente || (!nome && !cpf) || (!isNaN(nome) || isNaN(cpf)) || typeof idCliente != 'number') {
+            
+            if (!idCliente || (!nome && !cpf) || (!isNaN(nome) || isNaN(cpf)) || typeof idCliente != 'number' || nome.length < 3 || cpf.toString().length < 11 || cpf.toString().length > 11) {
                 return res.status(400).json({ message: 'Verifique os dados enviados e tente novamente!' });
             }
             const selecionarCpf = await clienteModel.selecionarByCpf(cpf);
